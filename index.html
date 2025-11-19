@@ -1802,10 +1802,219 @@
             }
         }
 
+        /* Mentoring Section Styles */
+        .mentoring-section {
+            background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-darker) 100%);
+            color: var(--color-light);
+            padding: 60px 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .mentoring-section .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .mentoring-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .mentoring-image {
+            max-width: 500px;
+            width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+        }
+
+        .mentoring-button {
+            background: var(--color-gradient-1);
+            color: var(--color-white);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-family: 'Lexend', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 24px rgba(0, 217, 255, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .mentoring-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 217, 255, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .mentoring-section {
+                padding: 40px 20px;
+            }
+
+            .mentoring-image {
+                max-width: 100%;
+            }
+
+            .mentoring-button {
+                padding: 12px 30px;
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Popup Modal Styles */
+        .popup-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 10000;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(5px);
+        }
+
+        .popup-overlay.active {
+            display: flex;
+        }
+
+        .popup-modal {
+            background: linear-gradient(135deg, var(--color-dark) 0%, var(--color-darker) 100%);
+            border-radius: 20px;
+            padding: 60px;
+            max-width: 750px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 217, 255, 0.4), 0 0 80px rgba(0, 217, 255, 0.2);
+            position: relative;
+            border: 2px solid rgba(0, 217, 255, 0.3);
+            animation: popupSlideIn 0.3s ease-out;
+        }
+
+        @keyframes popupSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px) scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .popup-close {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: var(--color-light);
+            font-size: 28px;
+            cursor: pointer;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            line-height: 1;
+        }
+
+        .popup-close:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: rotate(90deg);
+        }
+
+        .popup-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-accent);
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 217, 255, 0.3);
+        }
+
+        .popup-message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--color-light);
+            margin-bottom: 30px;
+        }
+
+        .popup-button {
+            background: var(--color-gradient-1);
+            color: var(--color-white);
+            border: none;
+            padding: 15px 40px;
+            border-radius: 10px;
+            font-family: 'Lexend', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            box-shadow: 0 8px 24px rgba(0, 217, 255, 0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .popup-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(0, 217, 255, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .popup-modal {
+                padding: 45px 30px;
+                max-width: 90%;
+            }
+
+            .popup-title {
+                font-size: 1.5rem;
+            }
+
+            .popup-message {
+                font-size: 1rem;
+            }
+
+            .popup-button {
+                padding: 12px 30px;
+                font-size: 0.9rem;
+            }
+        }
+
 
   </style>
 </head>
 <body>
+    <!-- Popup Modal -->
+    <div class="popup-overlay" id="donation-popup">
+        <div class="popup-modal">
+            <button class="popup-close" id="popup-close" aria-label="Close">&times;</button>
+            <h2 class="popup-title">Support Our Team</h2>
+            <p class="popup-message">We are still trying to fundraise to produce a 4 seater vehicle.</p>
+            <div class="progress-container" style="margin: 30px 0;">
+                <div class="progress-bar-wrapper" style="background: rgba(255, 255, 255, 0.1); border-radius: 10px; height: 30px; overflow: hidden; position: relative;">
+                    <div class="progress-bar-fill" style="background: linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd); height: 100%; width: 67%; border-radius: 10px; transition: width 0.5s ease; box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);"></div>
+                    <div class="progress-text" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: var(--color-light); font-weight: 600; font-size: 0.9rem; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);">67%</div>
+                </div>
+            </div>
+            <a href="https://hcb.hackclub.com/donations/start/ecoengine" class="popup-button" target="_blank">Donate Now</a>
+        </div>
+    </div>
+
     <!-- Navigation Bar -->
 <nav class="drop-down">
   <div class="logo logo-container">
@@ -1978,6 +2187,18 @@
       </div>
     </section>
 
+    <!-- Mentoring Section -->
+    <section class="mentoring-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Does Your Team Need Mentoring?</h2>
+            </div>
+            <div class="mentoring-content">
+                <img src="media/mother_duck.png" alt="Mother Duck with Ducklings" class="mentoring-image">
+                <a href="https://discord.gg/rbFnYV5RnM" class="mentoring-button" target="_blank">Join Our Discord Server</a>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
     <footer class="footer">
@@ -3251,6 +3472,42 @@
                 });
             }, 100);
         }
+
+        // Popup Modal Functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const popup = document.getElementById('donation-popup');
+            const closeBtn = document.getElementById('popup-close');
+            
+            // Check if popup was already shown in this session
+            const popupShown = sessionStorage.getItem('donation-popup-shown');
+            
+            if (!popupShown) {
+                // Show popup after 5 seconds
+                setTimeout(function() {
+                    popup.classList.add('active');
+                    sessionStorage.setItem('donation-popup-shown', 'true');
+                }, 5000);
+            }
+            
+            // Close button functionality
+            closeBtn.addEventListener('click', function() {
+                popup.classList.remove('active');
+            });
+            
+            // Close when clicking outside the modal
+            popup.addEventListener('click', function(e) {
+                if (e.target === popup) {
+                    popup.classList.remove('active');
+                }
+            });
+            
+            // Close on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && popup.classList.contains('active')) {
+                    popup.classList.remove('active');
+                }
+            });
+        });
 
 
 </script>
