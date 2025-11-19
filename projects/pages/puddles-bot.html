@@ -905,13 +905,22 @@
             position: relative;
         }
 
+        @keyframes progressGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(251, 191, 36, 0.6), 0 0 40px rgba(251, 191, 36, 0.4), 0 0 60px rgba(251, 191, 36, 0.2);
+            }
+            50% {
+                box-shadow: 0 0 30px rgba(251, 191, 36, 0.8), 0 0 60px rgba(251, 191, 36, 0.6), 0 0 90px rgba(251, 191, 36, 0.4);
+            }
+        }
+
         .donation-widget-progress-fill {
-            background: linear-gradient(90deg, #3b82f6, #60a5fa, #93c5fd);
+            background: linear-gradient(90deg, #fbbf24, #f59e0b, #d97706);
             height: 100%;
             width: 67%;
             border-radius: 10px;
             transition: width 0.5s ease;
-            box-shadow: 0 0 15px rgba(59, 130, 246, 0.5);
+            animation: progressGlow 2s ease-in-out infinite;
         }
 
         .donation-widget-progress-text {
